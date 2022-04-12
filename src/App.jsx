@@ -71,10 +71,13 @@ function App() {
               </select>
               <label htmlFor="1">Seleccioná el año de fabricación:</label>
               <select disabled={carInfo.name.length ? false : true} onChange={(e) => {
+                if (e.target.value === '') {
+                  return
+                }
                 onSetTaxInfo(e, setLoading, setTaxInfo, carInfo, taxInfo, taxCategories)
               }
               } defaultValue="">
-                <option value="" disabled></option>
+                <option value=""></option>
                 {carInfo.price && Object.keys(carInfo.price).map((year, index) => {
                   return (
                     <option value={year} key={`${year}_${index}`}>{year}</option>
